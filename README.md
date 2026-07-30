@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E.A. Studio
 
-## Getting Started
+Tienda online de ropa masculina de alta gama construida con **Next.js App Router**, TypeScript, Tailwind CSS, Framer Motion y Zustand. Checkout por WhatsApp (sin pasarelas de pago).
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- Lucide React
+- Zustand (carrito persistente)
+
+## Rutas
+
+| Ruta | Descripción |
+|------|-------------|
+| `/` | Inicio: hero, colección destacada, manifiesto |
+| `/productos` | Catálogo con filtros, búsqueda y ordenamiento |
+| `/productos/[id]` | Detalle de producto |
+| `/nosotros` | Historia y filosofía de marca |
+| `/contacto` | Formulario de contacto (UI) |
+| `/carrito` | Vista dedicada del carrito + checkout WhatsApp |
+| `/auth/login` | Login (maqueta con validación) |
+| `/auth/registro` | Registro (maqueta con validación) |
+
+## Cómo empezar
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrí [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## WhatsApp checkout
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Configurá el número de ventas en `.env.local`:
 
-## Learn More
+```env
+NEXT_PUBLIC_WHATSAPP_NUMBER=5491155681881
+```
 
-To learn more about Next.js, take a look at the following resources:
+Al finalizar el pedido, la app genera un mensaje con ítems, talles, colores y total, y abre `https://wa.me/...` listo para enviar.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run dev      # desarrollo
+npm run build    # build de producción
+npm run start    # servidor de producción
+npm run lint     # ESLint
+```
 
-## Deploy on Vercel
+## Notas de portafolio
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Autenticación y formulario de contacto son **solo UI** con validación en cliente.
+- Imágenes desde Unsplash (`images.unsplash.com`).
+- El carrito se guarda en `localStorage` vía Zustand persist.
